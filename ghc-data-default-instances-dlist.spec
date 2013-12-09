@@ -19,9 +19,11 @@ BuildRequires:	ghc >= 6.12.3
 BuildRequires:	ghc-data-default-class
 %{?with_prof:BuildRequires:	ghc-data-default-class-prof}
 BuildRequires:	ghc-dlist
-%{?with_prof:BuildRequires:	ghc-dlist}
+%{?with_prof:BuildRequires:	ghc-dlist-prof}
 BuildRequires:	rpmbuild(macros) >= 1.608
 %requires_eq	ghc
+Requires:	ghc-data-default-class
+Requires:	ghc-dlist
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # debuginfo is not useful for ghc
@@ -38,6 +40,8 @@ Summary:	Profiling %{pkgname} library for GHC
 Summary(pl.UTF-8):	Biblioteka profilująca %{pkgname} dla GHC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	ghc-data-default-class-prof
+Requires:	ghc-dlist-prof
 
 %description prof
 Profiling %{pkgname} library for GHC. Should be installed when
