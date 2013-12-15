@@ -15,19 +15,30 @@ Source0:	http://hackage.haskell.org/package/%{pkgname}-%{version}/%{pkgname}-%{v
 # Source0-md5:	6683d943ab70b7077ff6837fce75b4de
 URL:		http://hackage.haskell.org/package/data-default-instances-dlist
 BuildRequires:	ghc >= 6.12.3
-%{?with_prof:BuildRequires:	ghc-prof >= 6.12.3}
+BuildRequires:	ghc-base >= 2
+BuildRequires:	ghc-base < 5
 BuildRequires:	ghc-data-default-class
-%{?with_prof:BuildRequires:	ghc-data-default-class-prof}
 BuildRequires:	ghc-dlist
-%{?with_prof:BuildRequires:	ghc-dlist-prof}
+%if %{with prof}
+BuildRequires:	ghc-prof >= 6.12.3
+BuildRequires:	ghc-base-prof >= 2
+BuildRequires:	ghc-base-prof < 5
+BuildRequires:	ghc-data-default-class-prof
+BuildRequires:	ghc-dlist-prof
+%endif
 BuildRequires:	rpmbuild(macros) >= 1.608
 %requires_eq	ghc
+Requires:	ghc-base >= 2
+Requires:	ghc-base < 5
 Requires:	ghc-data-default-class
 Requires:	ghc-dlist
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # debuginfo is not useful for ghc
 %define		_enable_debug_packages	0
+
+# don't compress haddock files
+%define		_noautocompressdoc	*.haddock
 
 %description
 This module defines 'Default' instances for the type 'DList'.
@@ -40,6 +51,8 @@ Summary:	Profiling %{pkgname} library for GHC
 Summary(pl.UTF-8):	Biblioteka profilująca %{pkgname} dla GHC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	ghc-base-prof >= 2
+Requires:	ghc-base-prof < 5
 Requires:	ghc-data-default-class-prof
 Requires:	ghc-dlist-prof
 
