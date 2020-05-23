@@ -7,7 +7,7 @@ Summary:	Default instances for the type 'DList'
 Summary(pl.UTF-8):	Domyślne instancje dla typu 'DList'
 Name:		ghc-%{pkgname}
 Version:	0.0.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/data-default-instances-dlist
@@ -117,17 +117,19 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE 
 %{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/HSdata-default-instances-dlist-%{version}.o
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}-*.so
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}-*.a
+%exclude %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}-*_p.a
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Default
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Default/Instances
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Default/Instances/DList.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Default/Instances/DList.dyn_hi
 
 %if %{with prof}
 %files prof
 %defattr(644,root,root,755)
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}_p.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}-*_p.a
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Default/Instances/DList.p_hi
 %endif
 
