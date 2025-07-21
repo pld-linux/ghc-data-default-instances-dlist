@@ -117,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE 
 %{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}-*.so
+%attr(755,root,root) %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}-*.so
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}-*.a
 %exclude %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSdata-default-instances-dlist-%{version}-*_p.a
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data
